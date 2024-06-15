@@ -23,11 +23,21 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+  package: text("package"),
   createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
   updatedAt: timestamp("updatedAt", { mode: "date" })
     .notNull()
     .$onUpdate(() => new Date()),
 });
+
+export const packages = pgTable("packages", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  name: text("name"),
+  price: text("price"),
+  siteLimit: text("siteLimit").default("1")
+})
 
 export const sessions = pgTable(
   "sessions",

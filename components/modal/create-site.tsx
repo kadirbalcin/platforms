@@ -49,14 +49,14 @@ export default function CreateSiteModal() {
       className="w-full rounded-md bg-white md:max-w-md md:border md:border-stone-200 md:shadow dark:bg-black dark:md:border-stone-700"
     >
       <div className="relative flex flex-col space-y-4 p-5 md:p-10">
-        <h2 className="font-cal text-2xl dark:text-white">Create a new site</h2>
+        <h2 className="font-cal text-2xl dark:text-white">Yeni site oluştur</h2>
 
         <div className="flex flex-col space-y-2">
           <label
             htmlFor="name"
             className="text-sm font-medium text-stone-500 dark:text-stone-400"
           >
-            Site Name
+            Site Adı
           </label>
           <input
             name="name"
@@ -76,7 +76,7 @@ export default function CreateSiteModal() {
             htmlFor="subdomain"
             className="text-sm font-medium text-stone-500"
           >
-            Subdomain
+            Domain
           </label>
           <div className="flex w-full max-w-md">
             <input
@@ -102,11 +102,11 @@ export default function CreateSiteModal() {
             htmlFor="description"
             className="text-sm font-medium text-stone-500"
           >
-            Description
+            Açıklama
           </label>
           <textarea
             name="description"
-            placeholder="Description about why my site is so awesome"
+            placeholder="Sitelerinizi daha iyi ayırabilmeniz için açıklama yazabilirsiniz. (Sadece yöneticiler)"
             value={data.description}
             onChange={(e) => setData({ ...data, description: e.target.value })}
             maxLength={140}
@@ -133,7 +133,7 @@ function CreateSiteFormButton() {
       )}
       disabled={pending}
     >
-      {pending ? <LoadingDots color="#808080" /> : <p>Create Site</p>}
+      {pending ? <LoadingDots color="#808080" /> : <p>Kaydet</p>}
     </button>
   );
 }

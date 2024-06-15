@@ -16,6 +16,7 @@ export const authOptions: NextAuthOptions = {
           id: profile.id.toString(),
           name: profile.name || profile.login,
           gh_username: profile.login,
+          sitesLimit: profile.sitesLimit,
           email: profile.email,
           image: profile.avatar_url,
         };
@@ -63,6 +64,8 @@ export const authOptions: NextAuthOptions = {
         id: token.sub,
         // @ts-expect-error
         username: token?.user?.username || token?.user?.gh_username,
+        // @ts-expect-error
+        sitesLimit: token?.user?.sitesLimit,
       };
       return session;
     },
@@ -75,6 +78,7 @@ export function getSession() {
       id: string;
       name: string;
       username: string;
+      sitesLimit: string;
       email: string;
       image: string;
     };

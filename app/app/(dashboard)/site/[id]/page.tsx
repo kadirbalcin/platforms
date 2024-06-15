@@ -14,7 +14,7 @@ export default async function SitePosts({
     redirect("/login");
   }
   const data = await db.query.sites.findFirst({
-    where: (sites, { eq }) => eq(sites.id, decodeURIComponent(params.id)),
+    where: (sites: any, { eq }) => eq(sites.id, decodeURIComponent(params.id)),
   });
 
   if (!data || data.userId !== session.user.id) {

@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: kadirbalcin
+      POSTGRES_USER: admin
+      POSTGRES_DB: saas
+    ports:
+      - 5432:5432

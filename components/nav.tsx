@@ -26,40 +26,10 @@ import Image from "next/image";
 
 const externalLinks = [
   {
-    name: "Read announcement",
+    name: "Duyurular",
     href: "https://vercel.com/blog/platforms-starter-kit",
     icon: <Megaphone width={18} />,
-  },
-  {
-    name: "Star on GitHub",
-    href: "https://github.com/vercel/platforms",
-    icon: <Github width={18} />,
-  },
-  {
-    name: "Read the guide",
-    href: "https://vercel.com/guides/nextjs-multi-tenant-application",
-    icon: <FileCode width={18} />,
-  },
-  {
-    name: "View demo site",
-    href: "https://demo.vercel.pub",
-    icon: <Layout width={18} />,
-  },
-  {
-    name: "Deploy your own",
-    href: "https://vercel.com/templates/next.js/platforms-starter-kit",
-    icon: (
-      <svg
-        width={18}
-        viewBox="0 0 76 76"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="py-1 text-black dark:text-white"
-      >
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" fill="currentColor" />
-      </svg>
-    ),
-  },
+  }
 ];
 
 export default function Nav({ children }: { children: ReactNode }) {
@@ -80,24 +50,24 @@ export default function Nav({ children }: { children: ReactNode }) {
     if (segments[0] === "site" && id) {
       return [
         {
-          name: "Back to All Sites",
+          name: "Aktif siteleri görüntüle",
           href: "/sites",
           icon: <ArrowLeft width={18} />,
         },
         {
-          name: "Posts",
+          name: "Paylaşımlar",
           href: `/site/${id}`,
           isActive: segments.length === 2,
           icon: <Newspaper width={18} />,
         },
         {
-          name: "Analytics",
+          name: "Analizler",
           href: `/site/${id}/analytics`,
           isActive: segments.includes("analytics"),
           icon: <BarChart3 width={18} />,
         },
         {
-          name: "Settings",
+          name: "Ayarlar",
           href: `/site/${id}/settings`,
           isActive: segments.includes("settings"),
           icon: <Settings width={18} />,
@@ -106,18 +76,18 @@ export default function Nav({ children }: { children: ReactNode }) {
     } else if (segments[0] === "post" && id) {
       return [
         {
-          name: "Back to All Posts",
+          name: "Geri Dön",
           href: siteId ? `/site/${siteId}` : "/sites",
           icon: <ArrowLeft width={18} />,
         },
         {
-          name: "Editor",
+          name: "Editör",
           href: `/post/${id}`,
           isActive: segments.length === 2,
           icon: <Edit3 width={18} />,
         },
         {
-          name: "Settings",
+          name: "Ayarlar",
           href: `/post/${id}/settings`,
           isActive: segments.includes("settings"),
           icon: <Settings width={18} />,
@@ -126,19 +96,19 @@ export default function Nav({ children }: { children: ReactNode }) {
     }
     return [
       {
-        name: "Overview",
+        name: "Anasayfa",
         href: "/",
         isActive: segments.length === 0,
         icon: <LayoutDashboard width={18} />,
       },
       {
-        name: "Sites",
+        name: "Sitelerim",
         href: "/sites",
         isActive: segments[0] === "sites",
         icon: <Globe width={18} />,
       },
       {
-        name: "Settings",
+        name: "Ayarlar",
         href: "/settings",
         isActive: segments[0] === "settings",
         icon: <Settings width={18} />,

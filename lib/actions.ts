@@ -27,6 +27,13 @@ export const createSite = async (formData: FormData) => {
       error: "Not authenticated",
     };
   }
+
+  if(session.user.sitesLimit === "1") {
+    return {
+      error: "Site oluşturma limitine ulaştınız.",
+    }
+  }
+
   const name = formData.get("name") as string;
   const description = formData.get("description") as string;
   const subdomain = formData.get("subdomain") as string;
@@ -53,6 +60,7 @@ export const createSite = async (formData: FormData) => {
       };
     } else {
       return {
+        session: session,
         error: error.message,
       };
     }
@@ -220,6 +228,18 @@ export const getSiteFromPostId = async (postId: string) => {
   return post?.siteId;
 };
 
+export const getUserNameAndMail = async (userId: string) => {
+  const user = await db.query.users.findFirst({
+    where: eq(users.id, userId),
+    columns: {
+      name: true,
+      email: true
+    }
+  });
+
+  return user;
+}
+
 export const createPost = withSiteAuth(
   async (_: FormData, site: SelectSite) => {
     const session = await getSession();
@@ -289,7 +309,7 @@ export const updatePost = async (data: SelectPost) => {
     // if the site has a custom domain, we need to revalidate those tags too
     post.site?.customDomain &&
       (revalidateTag(`${post.site?.customDomain}-posts`),
-      revalidateTag(`${post.site?.customDomain}-${post.slug}`));
+        revalidateTag(`${post.site?.customDomain}-${post.slug}`));
 
     return response;
   } catch (error: any) {
@@ -350,7 +370,7 @@ export const updatePostMetadata = withPostAuth(
       // if the site has a custom domain, we need to revalidate those tags too
       post.site?.customDomain &&
         (revalidateTag(`${post.site?.customDomain}-posts`),
-        revalidateTag(`${post.site?.customDomain}-${post.slug}`));
+          revalidateTag(`${post.site?.customDomain}-${post.slug}`));
 
       return response;
     } catch (error: any) {

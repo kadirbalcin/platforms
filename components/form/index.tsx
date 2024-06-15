@@ -89,6 +89,7 @@ export default function Form({
             <input
               {...inputAttrs}
               required
+              disabled
               className="z-10 flex-1 rounded-l-md border border-stone-300 text-sm text-stone-900 placeholder-stone-300 focus:border-stone-500 focus:outline-none focus:ring-stone-500 dark:border-stone-600 dark:bg-black dark:text-white dark:placeholder-stone-700"
             />
             <div className="flex items-center rounded-r-md border border-l-0 border-stone-300 bg-stone-100 px-3 text-sm dark:border-stone-600 dark:bg-stone-800 dark:text-stone-400">
@@ -125,10 +126,12 @@ export default function Form({
       {inputAttrs.name === "customDomain" && inputAttrs.defaultValue && (
         <DomainConfiguration domain={inputAttrs.defaultValue} />
       )}
-      <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-stone-200 bg-stone-50 p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10 dark:border-stone-700 dark:bg-stone-800">
-        <p className="text-sm text-stone-500 dark:text-stone-400">{helpText}</p>
-        <FormButton />
-      </div>
+      {inputAttrs.name !== "subdomain" && (
+        <div className="flex flex-col items-center justify-center space-y-2 rounded-b-lg border-t border-stone-200 bg-stone-50 p-3 sm:flex-row sm:justify-between sm:space-y-0 sm:px-10 dark:border-stone-700 dark:bg-stone-800">
+          <p className="text-sm text-stone-500 dark:text-stone-400">{helpText}</p>
+          <FormButton />
+        </div>
+      )}
     </form>
   );
 }
@@ -145,7 +148,7 @@ function FormButton() {
       )}
       disabled={pending}
     >
-      {pending ? <LoadingDots color="#808080" /> : <p>Save Changes</p>}
+      {pending ? <LoadingDots color="#808080" /> : <p>Kaydet</p>}
     </button>
   );
 }

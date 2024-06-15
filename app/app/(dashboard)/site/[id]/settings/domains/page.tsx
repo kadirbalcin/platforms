@@ -27,14 +27,14 @@ export default async function SiteSettingsDomains({
         handleSubmit={updateSite}
       />
       <Form
-        title="Custom Domain"
-        description="The custom domain for your site."
-        helpText="Please enter a valid domain."
+        title="Özel alan adı"
+        description="Siteniz için özel alan adı."
+        helpText="Geçerli bir alan adı giriniz."
         inputAttrs={{
           name: "customDomain",
           type: "text",
           defaultValue: data?.customDomain!,
-          placeholder: "yourdomain.com",
+          placeholder: "siteniz.com",
           maxLength: 64,
           pattern: "^[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,5}$",
         }}
